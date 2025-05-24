@@ -39,3 +39,6 @@
 1. **Клонування проєкту:**  
    ```sh
    git clone https://github.com/Alex17031973/Blog_new.git
+
+npm install
+npm start
