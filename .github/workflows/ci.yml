@@ -1,0 +1,16 @@
+name: CI Test Workflow
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout репозиторію
+        uses: actions/checkout@v3
+
+      - name: Встановлення залежностей
+        run: npm install
+
+      - name: Запуск авто-тестів
+        run: npm test
