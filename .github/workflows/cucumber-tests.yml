@@ -1,0 +1,25 @@
+name: Run Cucumber Tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Завантаження репозиторію
+        uses: actions/checkout@v3
+
+      - name: Встановлення залежностей
+        run: pip install behave selenium
+
+      - name: Запуск тестів
+        run: behave features/login.feature
+
+      - name: Завантаження звіту
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test-Reports
+          path: reports/
