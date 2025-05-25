@@ -1,4 +1,4 @@
-name: CI Test Workflow
+name: CI Workflow
 
 on: [push, pull_request]
 
@@ -14,3 +14,24 @@ jobs:
 
       - name: Запуск авто-тестів
         run: npm test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout репозиторію
+        uses: actions/checkout@v3
+
+      - name: Встановлення ESLint
+        run: npm install --save-dev eslint
+
+      - name: Запуск перевірки стилю коду
+        run: npx eslint . --max-warnings=0
+
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout репозиторію
+        uses: actions/checkout@v3
+
+      - name: Запуск аналізу якості коду (SonarQube)
+        run: sonar-scanner
